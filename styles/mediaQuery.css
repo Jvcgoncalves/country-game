@@ -1,0 +1,299 @@
+@media (min-width:1501px){
+  /* header */
+
+  #game-name{
+    font-size: 3rem;
+  }
+
+  #current-language {
+    margin-right: 1.4rem;
+  }
+
+  .flag-language{
+    width: 5rem;
+    height: auto;
+  }
+
+  #available-lng{
+    top: 6.5rem;
+  }
+
+  #available-lng.active{
+    height: 12rem;
+  }
+
+  .languages span{
+    font-size: 2rem;
+  }
+
+  #down-arrow{
+    width: 2rem;
+    transition: .5s;
+  }
+
+  /* Content */
+
+  #countries-flags {
+    width: 24rem;
+    height: 20rem;
+  }
+
+  #flags-quantity h3 {
+    font-size: 2.2rem;
+  }
+
+  #how-many-flags {
+    width: 26rem;
+    height: 4rem;
+  }
+
+  #plus-span{
+    height: 4rem;
+  }
+  
+  #dash-span{
+    height: 4rem;
+  }
+
+  #error-msg{
+    font-size: 1.5rem;
+  }
+
+  #submit-flags-quantity{
+    width: 12rem;
+    height: 4rem;
+    border-radius: 1.8125rem;
+    font-size: 2.5rem;
+  }
+
+  /* game part */
+
+  .flag-language {
+    width: 4.5rem;
+    height: auto;
+  }
+
+  #flags-to-answer,.flags-to-answer,#asnwer-span,#flag-asnwer{
+    font-size: 2.5rem;
+  }
+
+  #flag-asnwer{
+    width: 30rem;
+  }
+
+  #confirm-asnwer, #give-up {
+    width: 15rem;
+    height: 4rem;
+    font-size: 2.2rem;
+  }
+
+  #next-flag,#see-results-button, #restart-button{
+    width: 22rem;
+    height: 4rem;
+    font-size: 2.4rem
+  }
+
+  #current-flag {
+    width: 26rem;
+    height: 22rem;
+  }
+
+  .tips-p,#correct-answer,#end-game-p, #correct-answer-percent{
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  #game-name{
+    font-size: 2rem;
+  }
+
+  #flags-quantity h3 {
+    font-size: 1.8rem;
+  }
+
+  #how-many-flags {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.8rem;
+  }
+
+  #dash-span,#plus-span {
+    height: 3rem;
+  }
+
+  #countries-flags {
+    width: 16rem;
+    height: 14rem;
+  }
+
+  #submit-flags-quantity {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  /* In game part */
+
+  #current-flag {
+    width: 18rem;
+    height: 14rem;
+  }
+
+  #confirm-asnwer, #give-up {
+    width: 10rem;
+    height: 2.8rem;
+    font-size: 1.4rem;
+  }
+
+}
+
+@media (max-width: 625px){
+  #flags-quantity h3 {
+    font-size: 1.4rem;
+  }
+
+  #countries-flags {
+    width: 14rem;
+    height: 12rem;
+  }
+
+  #how-many-flags {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.8rem;
+  }
+
+  #dash-span,#plus-span {
+    height: 3rem;
+  }
+
+  /* In game part */
+
+  #flag-asnwer {
+    width: 18rem;
+    font-size: 1.1rem;
+  }
+
+  #tips,#correct-answer-percent{
+    max-width: 90%;
+  }
+
+  .tips-p, #correct-answer,#end-game-p, #correct-answer-percent{
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  #next-flag, #see-results-button, #restart-button{
+    width: 13rem;
+    height: 3rem;
+    font-size: 1.4rem
+  }
+}
+
+@media (max-width: 475px){
+  #flags-quantity {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* In game part */
+
+  #current-flag {
+    width: 16rem;
+    height: 12rem;
+  }
+
+  #asnwer-span {
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
+  .answer-input {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    outline: none;
+  }
+
+  #flag-asnwer {
+    width: 14em;
+    font-size:1rem;
+  }
+
+  #confirm-asnwer, #give-up {
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    margin: .5rem;
+  }
+
+  .tips-p, #correct-answer,#end-game-p, #correct-answer-percent{
+    font-size: .9rem;
+  }
+
+}
+
+@media (max-width: 370px){
+  #header{
+    padding: 1.2rem;
+  }
+  
+  #game-name{
+    font-size: 1.5rem;
+  }
+
+  .flag-language {
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  #down-arrow{
+    width: 1rem;
+  }
+
+  .languages{
+    font-size: 1rem;
+  }
+
+  #how-many-flags {
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.4rem;
+  }
+
+  #dash-span,#plus-span {
+    height: 2.5rem;
+  }
+
+  #dash-span > img,#plus-span > img {
+    width: 1.4rem;
+  }
+
+  #submit-flags-quantity{
+    width: 8rem;
+    font-size: 1.3rem;
+    height: 2.25rem;
+  }
+
+  #flags-quantity h3 {
+    font-size: 1.2rem;
+  }
+
+  /* In game part */
+
+  #current-flag {
+    width: 14rem;
+    height: 10rem;
+  }
+
+  #confirm-asnwer, #give-up {
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    margin: .5rem;
+  }
+}

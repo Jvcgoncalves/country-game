@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Viga&display=swap');
+
+@font-face {
+  font-family:Koulen;
+  src: url('https://fonts.googleapis.com/css2?family=Koulen');
+}
+
+@font-face {
+  font-family:Viga;
+  src: url('https://fonts.googleapis.com/css2?family=Viga');
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --bg-color: #E0DFDF;
+  --buttons: #0B7F4F;
+  --inputs: #4C2D96;
+  --text-color: #222;
+  --light-font: #fff7f7;
+  --error: #ff2c2c;
+  --right: #108d00;
+}
+
+.container{
+  min-height: 100vh;
+  background: var(--bg-color);
+  position: relative;
+}
+
+/* header */
+
+#header{
+  font-family: Koulen;
+  max-width: 100%;
+  height: 6.375rem;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+#game-name{
+  font-size: 2.5rem;
+  color: var(--buttons);
+}
+
+.flag-language{
+  border-radius: 100%;
+  width: 5rem;
+  width: 3rem;
+  height: 3rem;
+}
+
+#current-language{
+  display: flex;
+  gap: .7rem;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+/* Content */
+
+#content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#current-flag{
+  width: 20rem;
+  height: 16rem;
+}
+
+/* Choose flags quantity */
+
+#answer-area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answer-input-area{
+  margin: 1rem;
+}
+
+.answer-input{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#flag-asnwer{
+  width: 24rem;
+  border: transparent;
+  font-size: 1.4rem;
+  padding: 0 .5rem;
+  background: transparent;  
+  color: var(--text-color);
+  border-bottom: .15rem solid var(--text-color);
+}
+
+#flag-asnwer:focus{
+  border-bottom: .15rem solid var(--text-color);
+  outline: none;
+}
+
+#asnwer-span{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 0 1rem 1rem 0;
+  padding: 0 .5rem;
+  font-family: Viga;
+}
+
+
+#confirm-asnwer, #give-up, #next-flag, #see-results-button, #restart-button{
+  cursor: pointer;
+  width: 12.25rem;
+  height: 3.125rem;
+  border-radius: 1.8125rem;
+  background: var(--Buttons, #0B7F4F);
+  border: none;
+  color: var(--text-color-2, #FFFFFA);
+  font-family: Viga;
+  font-size: 1.875rem;
+  font-weight: 400;
+  margin: 1rem;
+}
+
+#next-flag.disable{
+  display: none;
+}
+
+#restart-button{
+  width: 16rem;
+  font-size: 1.5rem;
+}
+
+#next-flag{
+  width: 16.5rem;
+  height: 3.125rem;
+}
+
+#see-results-button{
+  width: 16.5rem;
+}
+
+#flag-asnwer.error{
+  color: var(--error);
+  border-bottom: .13rem solid var(--error);
+}
+
+#flag-asnwer.right{
+  color: var(--right);
+  border-bottom: .13rem solid var(--right);
+}
+
+.tips-p,  #correct-answer,#end-game-p, #correct-answer-percent{
+  font-family: Viga;
+  font-size: 1.2rem;
+  font-weight: 100;
+}

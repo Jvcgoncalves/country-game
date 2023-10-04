@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Viga&display=swap');
+
+@font-face {
+  font-family:Koulen;
+  src: url('https://fonts.googleapis.com/css2?family=Koulen');
+}
+
+@font-face {
+  font-family:Viga;
+  src: url('https://fonts.googleapis.com/css2?family=Viga');
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --bg-color: #E0DFDF;
+  --buttons: #0B7F4F;
+  --inputs: #4C2D96;
+  --text-color: #222;
+  --light-font: #fff7f7;
+  --error: #ff2c2c;
+  --right: #108d00;
+}
+
+.container{
+  min-height: 100vh;
+  background: var(--bg-color);
+  position: relative;
+}
+
+/* header */
+
+#header{
+  font-family: Koulen;
+  max-width: 100%;
+  height: 6.375rem;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.menu{
+  display: none;
+}
+
+#game-name{
+  font-size: 2.5rem;
+  color: var(--buttons);
+}
+
+.flag-language{
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+}
+
+#current-language{
+  display: flex;
+  gap: .7rem;
+  align-items: center;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+#down-arrow{
+  width: 1.3rem;
+  transition: .5s;
+}
+
+#available-lng{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 5.5rem;
+  right: 1.5rem;
+  gap: .5rem;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: .3s;
+}
+
+.languages{
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  cursor: pointer;
+}
+
+#available-lng.active{
+  height: 7rem;
+  overflow: hidden;
+  visibility: visible;
+}
+
+#selected{
+  color: var(--buttons);
+}
+
+/* Content */
+
+#content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#countries-flags{
+  width: 20rem;
+  height: 17rem;
+}
+
+/* Choose flags quantity */
+
+#flags-quantity{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#flags-quantity h3{
+  text-align: center;
+  color: var(--Text-color, #222);
+  font-family: Viga;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.input-quantity-area{
+  margin: 1rem;
+}
+
+.button-add-flags-quantity{
+  display: flex;
+  align-items: center;
+  border: .1rem solid transparent;
+  outline: none;
+}
+
+.button-add-flags-quantity:focus-within{
+  border: .1rem solid black ;
+  border-radius: 1.1rem;
+  outline: none;
+}
+
+#how-many-flags{
+  text-align: center;
+  width: 18rem;
+  height: 3.5rem;
+  border: transparent;
+  font-size: 2rem;
+  background: var(--inputs, #4C2D96);  
+  color: var(--light-font);
+}
+
+#how-many-flags:focus{
+  outline: none;
+}
+
+#plus-span{
+  display: flex;
+  align-items: center;
+  background-color: var(--inputs);
+  height: 3.5rem;
+  border-radius: 0 1rem 1rem 0;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+#dash-span{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: var(--inputs);
+  height: 3.5rem;
+  border-radius:  1rem 0 0 1rem ;
+  padding: 0 1rem;
+}
+
+#submit-flags-quantity{
+  cursor: pointer;
+  width: 12.25rem;
+  height: 3.125rem;
+  border-radius: 1.8125rem;
+  background: var(--Buttons, #0B7F4F);
+  border: none;
+  color: var(--text-color-2, #FFFFFA);
+  font-family: Viga;
+  font-size: 1.875rem;
+  font-weight: 400;
+}
+
+.button-add-flags-quantity.error{
+  border-radius: 1.1rem;
+  border: .13rem solid var(--error);
+}
+
+.button-add-flags-quantity.right{
+  border-radius: 1.1rem;
+  border: .13rem solid var(--right);
+}
+
+
+#error-msg{
+  font-family: Viga;
+  color: var(--error);
+  text-align: center;
+  font-size: 1rem;
+}

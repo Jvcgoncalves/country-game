@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/mediaQuery.css">
+  <script type="module" src="scripts/indexPage/index.js" defer ></script>
+  <title>Guess Flags</title>
+  
+</head>
+<body>
+    <div class="container" data-current-language="pt_BR">
+
+      <div id="header">
+
+        <h1 id="game-name">Guess Flags</h1>
+
+        <div id="current-language">
+          <img class="flag-language" src="imagens/br-flag.png" alt="br-language">
+          <img id="down-arrow" src="imagens/Vector 1.png" alt="down-arrow">
+        </div>
+        <div id="available-lng">
+          <div class="languages" data-language="en_US">
+
+            <img class="flag-language" src="imagens/en-flag.png" alt="en-language"> <span>En</span></div>
+
+          <div class="languages" id="selected" data-language="pt_BR">
+
+            <img class="flag-language"  src="imagens/br-flag.png" alt="br-language"> <span>Pt-br</span>
+
+          </div>
+        </div>
+
+        <span class="menu"><img src="imagens/icons8-cardápio-100.png" alt=""></span>
+      </div>
+
+      <div id="content">
+        
+        <img id="countries-flags" src="imagens/images.png" alt="">
+
+        <div id="flags-quantity">
+          <h3 id="how-many-flags-question">Escolha com quantas bandeiras deseja jogar</h3>
+
+          
+          <div class="input-quantity-area">
+            <span id="error-msg"></span>
+          <div class="button-add-flags-quantity">
+            <span id="dash-span"><img src="imagens/icons8-subtração-30.png" alt=""></span>
+            <input type="text" inputmode="numeric" placeholder="25" id="how-many-flags">
+            <span id="plus-span"><img src="imagens/icons8-soma-30.png" alt=""></span>
+          </div>
+          </div>
+
+          <button id="submit-flags-quantity">Iniciar</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

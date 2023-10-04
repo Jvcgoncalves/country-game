@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles/gamePage.css">
+  <link rel="stylesheet" href="styles/mediaQuery.css">
+  <script type="module" src="scripts/gameScripts/gameIndex.js"></script>
+  <title>Guess Flags</title>
+</head>
+<body>
+  <div class="container" >
+
+    <div id="header">
+
+      <h3 id="flags-to-answer">Bandeira <span class="flags-to-answer"></span>/<span class="flags-to-answer"></span></h3>
+
+      <div id="current-language">
+        <img class="flag-language" src="imagens/br-flag.png" alt="br-language">
+        
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="tips"></div>
+      <img id="current-flag" src="imagens/images.png" alt="flag">
+
+      <div id="answer-area">
+        <span id="correct-answer"></span>
+        <div class="answer-input-area">
+        <div class="answer-input">
+          <span id="asnwer-span">Resposta: </span>
+          <input type="text" name="" id="flag-asnwer" autocomplete="off">
+        </div>
+        </div>
+        <div class="game-buttons">
+          <button class="main-game-buttons" id="give-up">Dicas</button>
+          <button class="main-game-buttons" id="confirm-asnwer">Confirmar</button>
+          <button id="next-flag" class="disable">Próxima bandeira</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
