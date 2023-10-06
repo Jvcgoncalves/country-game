@@ -73,7 +73,7 @@
     height: auto;
   }
 
-  #flags-to-answer,.flags-to-answer,#asnwer-span,#flag-asnwer{
+  #flags-to-answer,.flags-to-answer,#asnwer-span,#flag-asnwer,.quantity{
     font-size: 2.5rem;
   }
 

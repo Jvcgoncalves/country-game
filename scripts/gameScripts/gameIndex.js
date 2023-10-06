@@ -3,16 +3,18 @@ import { checkResults } from "./endGame.js";
 import { giveTips} from "./giveTips.js";
 import { getCountry } from "./selectFlag.js";
 import { nextFlag } from "./showAnswer.js";
+import { uptadeLanguage } from "./translateGame.js";
 
 getCountry()
+
 function checkLanguage(){
   if(sessionStorage.getItem('game_language') === "pt_BR"){
     document.querySelector('.flag-language').src = '../../imagens/br-flag.png'
   } else{
     document.querySelector('.flag-language').src = '../../imagens/en-flag.png'
-  }
-  
+  }  
 }
+
 document.getElementById('give-up').addEventListener('click',giveTips)
 document.getElementById('give-up').addEventListener('touchstart',giveTips)
 
@@ -47,3 +49,4 @@ document.getElementById('flag-asnwer').addEventListener('keypress',async ev=>{
 })
 
 checkLanguage()
+uptadeLanguage()

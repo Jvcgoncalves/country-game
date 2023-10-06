@@ -50,6 +50,16 @@
   color: var(--buttons);
 }
 
+#flags-left{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.quantity{
+  font-size: 1.7rem;
+}
+
 .flag-language{
   border-radius: 100%;
   width: 5rem;

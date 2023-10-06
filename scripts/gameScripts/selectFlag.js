@@ -52,6 +52,6 @@ export async function getCountry(){
   new SelectFlag(countrys[nextFlag])
 
   alreadyUsedFlags.push(nextFlag)
-
+  
   await showFlagsQuantity()
 }

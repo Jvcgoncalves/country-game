@@ -67,6 +67,9 @@ document.getElementById('submit-flags-quantity').addEventListener('touchstart', 
   try{
 
     await startGame()
+
+    sessionStorage.setItem('game_language', document.querySelector('.container').dataset.currentLanguage)
+
     window.location.href = './gamePage.html'
   }catch (e){
 

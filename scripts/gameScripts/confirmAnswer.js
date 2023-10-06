@@ -30,7 +30,16 @@ export class Answer{
       tipsDiv.innerHTML=''
 
       const p_answer = document.createElement('p')
-      p_answer.innerText = `Nome do país: ${rightAnswer.countryName}` 
+      if(sessionStorage.getItem('game_language') === "pt_BR"){
+    
+        p_answer.innerText = `Nome do país: ${rightAnswer.countryName}` 
+    
+      } else {
+    
+        p_answer.innerText = `Country's name: ${rightAnswer.countryName}` 
+    
+      }
+      
       p_answer.id = 'correct-answer'
 
       tipsDiv.appendChild(p_answer)
