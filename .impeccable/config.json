@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "design/preview.html"
+        ],
+        "createdAt": "2026-11-08T17:19:12.068Z",
+        "reason": "Agent: static preview uses intentional full-bleed screen and art panels; visible text has 22–74px inset, and art caption has 31px inset."
+      }
+    ]
+  }
+}
