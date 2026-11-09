@@ -1,1 +1,9 @@
 .impeccable/hook.cache.json
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+.vercel/
+.netlify/

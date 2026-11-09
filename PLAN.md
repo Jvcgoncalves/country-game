@@ -35,11 +35,11 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan). Success payl
 
 ### 1. Workspace setup
 
-- [ ] Create npm workspaces, root `dev`, `build`, `lint`, `typecheck`, and `test` scripts; keep old app available until replacement works.
-- [ ] Scaffold `apps/web` with Vite React TypeScript; install/configure Tailwind.
-- [ ] Scaffold `apps/api` with Fastify; configure dev server, production build/start, and `/api` Vite proxy.
-- [ ] Add `.gitignore`, `.env.example`, and README setup instructions for server key, dev ports, builds, Netlify proxy, and Vercel deployment.
-- [ ] Honor repository rules: code in English; KISS/DRY; no `any`; explicit type definitions in type-only files; no written types in files with functions or classes; utility behavior in classes with static methods instead of loose utility functions.
+- [x] Create npm workspaces, root `dev`, `build`, `lint`, `typecheck`, and `test` scripts; keep old app available until replacement works.
+- [x] Scaffold `apps/web` with Vite React TypeScript; install/configure Tailwind.
+- [x] Scaffold `apps/api` with Fastify; configure dev server, production build/start, and `/api` Vite proxy.
+- [x] Add `.gitignore`, `.env.example`, and README setup instructions for server key, dev ports, builds, Netlify proxy, and Vercel deployment.
+- [x] Honor repository rules: code in English; KISS/DRY; no `any`; explicit type definitions in type-only files; no written types in files with functions or classes; utility behavior in classes with static methods instead of loose utility functions.
 
 ### 2. API and v5 migration
 

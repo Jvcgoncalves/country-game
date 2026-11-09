@@ -1,55 +1,71 @@
-## Guess flags :earth_americas:
-Game about some flags
-Good lucky and enjoy the game
+# Guess Flags
 
+Flag guessing game. Play in English or Brazilian Portuguese, choose a round length, and use up to three hints to identify each country.
 
-## Technology 
+The original static app remains at the repository root while its replacement is built in `apps/web` and `apps/api`.
 
-Techs i used to develop this project
+## Play the existing game
 
-* Java Script  ES6
-* Babel
-* Webpacker
+Live site: [guessflags.netlify.app](https://guessflags.netlify.app/)
 
-## Services Used
+Choose a language and round size on the start page, then guess each country from its flag. Reveal hints for the capital, currency, and first three letters of the answer. Review your score at the end and play again.
 
-* Github
-* Netlify
-* REST countries API
-  
-## How to use
+![Existing game start page](https://github.com/Jvcgoncalves/country-game/assets/127047416/f36450f4-6bd2-4326-ad2a-0cafa25b30ca)
 
-### 1 - When you access, at the top on right you will see a Brazilian flag, click there to see other option. For now i only have made only two options, english and brazilian portuguese.
+![Existing game round size control](https://github.com/Jvcgoncalves/country-game/assets/127047416/c9300016-e04f-431f-ad6d-062275edb232)
 
-![image](https://github.com/Jvcgoncalves/country-game/assets/127047416/f36450f4-6bd2-4326-ad2a-0cafa25b30ca)
+![Existing game round](https://github.com/Jvcgoncalves/country-game/assets/127047416/36015dcf-2db7-40de-9908-39665209df31)
 
-### 2 - At the middle you yill see a input in purple, and the start game button.
+## Requirements
 
-![image](https://github.com/Jvcgoncalves/country-game/assets/127047416/c9300016-e04f-431f-ad6d-062275edb232)
+- Node.js 22.12 or newer
+- npm 10.9 or newer
 
-### 3 - After choose the game language and with how many flags you wanna play you will be redirected to the game page, in the same place you choosed the game page you have the current game language ( the game will compare the answer at language right there ), have two buttons, to confirm the answer and to give tips, you will see three tips before you can give up.
-![image](https://github.com/Jvcgoncalves/country-game/assets/127047416/36015dcf-2db7-40de-9908-39665209df31)
+## Local setup
 
-## Features
+```sh
+npm install
+cp .env.example .env
+```
 
-The main feature of the application are:
- - Learn about countries
- - Test you knowledge about flags and respective countries
+Set `REST_COUNTRIES_API_KEY` in `.env` when the server-side REST Countries adapter is enabled. Keep it out of `VITE_*` variables and browser code. `API_PORT` defaults to `3001`.
 
-## Links
-  - Deploy on netlify: https://guessflags.netlify.app/
-  - Repository: https://github.com/Jvcgoncalves/site-de-veiculos
-    - In case of bugs, suggestions or problems about license about any image,
-      contact goncalvesdacosta05@gmail.com
+Start both workspaces from the repository root:
 
-  ## Versioning
+```sh
+npm run dev
+```
 
-  1.2.0.0
+The web app runs at `http://localhost:5173`; Fastify runs at `http://localhost:3001`. Vite forwards `/api/*` requests to Fastify.
 
+## Workspace commands
 
-  ## Authors
+```sh
+npm run build
+npm run lint
+npm run typecheck
+npm run test
+```
 
-  * **João Vitor Gonçalves da Costa** 
+The API build emits JavaScript to `apps/api/dist`; `npm run start --workspace=@guess-flags/api` starts that build. Vitest is configured to pass while no test files exist.
 
-  Please follow github and linkdin (link in my profile )!
-  Thanks to visiting me and good coding!
+## Netlify web deployment
+
+The root `netlify.toml` builds `apps/web` and proxies browser `/api/*` requests to the Fastify deployment. After creating the Vercel API project, replace `YOUR-VERCEL-API-DOMAIN` in `netlify.toml` with its production hostname, without `https://` or a trailing slash. Netlify keeps the browser URL on the site while proxying the request.
+
+Import the repository into Netlify with the repository root as the base directory. The build command and publish directory are already in `netlify.toml`.
+
+## Vercel API deployment
+
+Create a separate Vercel project for this repository and set its Root Directory to `apps/api`. Keep the npm workspace root and lockfile available to the build by enabling **Include source files outside of the Root Directory** if Vercel asks. Vercel detects the Fastify entry at `src/server.ts`; leave its framework build settings at their defaults.
+
+Add `REST_COUNTRIES_API_KEY` as a Vercel server environment variable for the environments where the API runs. Never add the secret to Netlify or a `VITE_*` variable. After the first deployment, copy the Vercel production hostname into the Netlify proxy rule above.
+
+For local Vercel project setup, run `vercel link --repo` from the repository root and select the API project. Vercel's own deployment instructions: [Fastify](https://vercel.com/kb/guide/ship-a-fastify-app-on-vercel) and [monorepos](https://vercel.com/docs/monorepos).
+
+## Project
+
+- Repository: [Jvcgoncalves/country-game](https://github.com/Jvcgoncalves/country-game)
+- Legacy app version: `1.2.0.0`
+- Author: João Vitor Gonçalves da Costa
+- Contact: goncalvesdacosta05@gmail.com
