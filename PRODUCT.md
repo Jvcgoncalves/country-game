@@ -17,7 +17,7 @@ Let players choose a round length, identify flags, use hints when needed, see th
 ## Operating Context
 
 - Players use English or Brazilian Portuguese UI and country names.
-- Round sizes: 5, 10, or 25 presets, plus a custom size. Full-catalog custom rounds require REST Countries permission; until then, keep custom requests bounded.
+- Round sizes: 5, 10, or 25 presets, plus custom sizes from 1 to 50. Reject custom requests above 50.
 - Existing round flow: show one flag, let player guess or reveal three hints (capital, currency, first three letters), show answer, advance, show progress and final score, offer replay.
 - Guesses use the selected language only. Compare full names after case, diacritics, punctuation, and whitespace normalization; accept known aliases in that language.
 

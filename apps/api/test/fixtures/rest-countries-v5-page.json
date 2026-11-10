@@ -1,0 +1,47 @@
+{
+  "data": {
+    "objects": [
+      {
+        "names": {
+          "common": "Brazil",
+          "official": "Federative Republic of Brazil",
+          "translations": {
+            "por": {
+              "common": "Brasil",
+              "official": "República Federativa do Brasil"
+            }
+          }
+        },
+        "codes": { "alpha_2": "BR" },
+        "capitals": [
+          {
+            "attributes": { "primary": true },
+            "name": "Brasília"
+          }
+        ],
+        "currencies": [
+          { "code": "BRL", "name": "Brazilian real", "symbol": "R$" }
+        ]
+      },
+      {
+        "names": {
+          "common": "Antarctica",
+          "official": "Antarctica",
+          "translations": {
+          "por": { "common": "Antártida", "official": "Antártica" }
+          }
+        },
+        "codes": { "alpha_2": "AQ" },
+        "capitals": [],
+        "currencies": []
+      }
+    ],
+    "meta": {
+      "total": 3,
+      "count": 2,
+      "limit": 2,
+      "offset": 0,
+      "more": true
+    }
+  }
+}
