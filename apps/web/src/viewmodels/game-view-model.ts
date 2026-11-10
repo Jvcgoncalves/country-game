@@ -40,11 +40,7 @@ export class GameViewModel {
 
   selectPreset(count: number): void {
     if (![5, 10, 25].includes(count)) return;
-    this.update({ selectedRoundSize: count, startError: null });
-  }
-
-  selectCustom(): void {
-    this.update({ selectedRoundSize: null, startError: null });
+    this.update({ selectedRoundSize: count, customCount: String(count), startError: null });
   }
 
   setCustomCount(value: string): void {
@@ -140,7 +136,16 @@ export class GameViewModel {
     this.update({ flagLoadFailed: true });
   }
 
+  giveUp() {
+    if (this.state.screen !== 'game') return;
+    this.resetRound();
+  }
+
   playAgain(): void {
+    this.resetRound();
+  }
+
+  private resetRound() {
     this.update({
       screen: 'start',
       questions: [],

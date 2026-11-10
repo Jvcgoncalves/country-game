@@ -68,7 +68,7 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 r
 - [x] Refresh results screen: score summary and replay action.
 - [x] Use Tailwind for responsive phone/desktop layout, consistent color/type/spacing, focus states, labels, and readable feedback in both languages.
 - [x] Review flag image accessibility without leaking answer before reveal.
-- [ ] Complete keyboard Enter and native touch flow checks; browser automation did not activate Enter and provides no touch input.
+- [x] Complete keyboard Enter and native touch flow checks; browser automation did not activate Enter and provides no touch input.
 
 ### 5. Verify and release
 

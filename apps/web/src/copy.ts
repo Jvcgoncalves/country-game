@@ -43,6 +43,7 @@ export const copy: CopyDictionary = {
     seeResults: 'See results',
     results: 'Round complete',
     finalScore: 'Your score',
+    giveUp: 'Give up',
     playAgain: 'Play again',
   },
   'pt-BR': {
@@ -87,6 +88,7 @@ export const copy: CopyDictionary = {
     seeResults: 'Ver resultados',
     results: 'Rodada concluída',
     finalScore: 'Sua pontuação',
+    giveUp: 'Desistir',
     playAgain: 'Jogar novamente',
   },
 };

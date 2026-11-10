@@ -62,14 +62,13 @@ function StartView({ model, state }: AppProps) {
               <span>{text.customPrompt}</span>
               <input
                 type="number"
-                min="1"
-                max="50"
-                step="1"
+                min={1}
+                max={50}
+                step={1}
                 inputMode="numeric"
                 aria-label={text.customPlaceholder}
                 placeholder="30"
                 value={state.customCount}
-                onFocus={() => model.selectCustom()}
                 onChange={(event) => model.setCustomCount(event.target.value)}
               />
             </label>
@@ -131,6 +130,9 @@ function GameView({ model, state }: AppProps) {
       <header className="topbar">
         <h1 className="brand">{text.title}</h1>
         <div className="game-topbar-actions">
+          <button type="button" onClick={() => model.giveUp()} className="secondary-button give-up-button">
+            {text.giveUp}
+          </button>
           <p className="score-readout"><span>{text.score}</span><strong>{state.score}</strong></p>
           <LanguagePicker language={state.language} text={text} onChange={(language) => model.setLanguage(language)} disabled />
         </div>
@@ -184,9 +186,27 @@ function GameView({ model, state }: AppProps) {
               value={state.guessInput}
               disabled={complete}
               onChange={(event) => model.setGuessInput(event.target.value)}
+              onFocus={(event) => {
+                const input = event.currentTarget;
+                if (
+                  input.selectionStart !== null &&
+                  input.selectionEnd !== null &&
+                  input.selectionStart !== input.selectionEnd
+                ) {
+                  input.setSelectionRange(input.selectionEnd, input.selectionEnd);
+                }
+              }}
               className={GameStyle.textField()}
             />
-            {!complete && <button type="submit" className="primary-button answer-submit">{text.submitGuess}</button>}
+            {!complete && (
+              <button
+                type="submit"
+                disabled={!state.guessInput.trim()}
+                className="primary-button answer-submit"
+              >
+                {text.submitGuess}
+              </button>
+            )}
           </form>
 
           {state.feedback && (

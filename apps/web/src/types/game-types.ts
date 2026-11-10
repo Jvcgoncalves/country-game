@@ -36,7 +36,6 @@ export interface GameState {
 export interface GameActions {
   setLanguage(language: GameLanguage): void;
   selectPreset(count: number): void;
-  selectCustom(): void;
   setCustomCount(value: string): void;
   startRound(): Promise<void>;
   setGuessInput(value: string): void;
@@ -45,6 +44,7 @@ export interface GameActions {
   revealAnswer(): void;
   advance(): void;
   markFlagUnavailable(): void;
+  giveUp(): void;
   playAgain(): void;
   getCurrentQuestion(): GameQuestion | null;
   isCurrentQuestionComplete(): boolean;
@@ -104,6 +104,7 @@ export interface LanguageCopy {
   seeResults: string;
   results: string;
   finalScore: string;
+  giveUp: string;
   playAgain: string;
 }
 

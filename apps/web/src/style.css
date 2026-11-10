@@ -365,6 +365,16 @@ button:disabled {
   font-variant-numeric: tabular-nums;
 }
 
+.give-up-button {
+  min-height: 38px;
+  padding: 6px 11px;
+  color: #8b2635;
+}
+
+.give-up-button:hover {
+  background: #f9e9e9;
+}
+
 .game-left {
   display: flex;
   flex-direction: column;
