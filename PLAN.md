@@ -11,9 +11,9 @@ Rebuild current two-page flag game as an npm workspace monorepo. Use Vite + Reac
 - Show progress, score, results, and play again.
 - Avoid duplicate flags within one game.
 
-## Live preview reference
+## Design reference
 
-[Old site](https://guessflags.netlify.app/) uses light gray background, bold condensed headings, green title/buttons, purple round-size control, top-right language flag, and central flag collage. Visual identity and collage treatment await design-round answers. On current live game screen, flag collage remains as placeholder and progress shows no numbers after start. New app needs explicit loading/error states and a real flag before guessing begins.
+Use [`design/preview.html`](design/preview.html) and its desktop/mobile screenshots as the visual source. It defines the paper/green/purple palette, Barlow Condensed and Atkinson Hyperlegible type, home flag artwork, split game layout, and mobile stacking. Keep the app as one white page surface; the colored flag artwork remains part of the home view.
 
 ## Target layout
 
@@ -57,22 +57,23 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 r
 
 ### 3. React game migration
 
-- [ ] Build start, game, and results views with React state; keep English/Portuguese copy together and persist chosen language for the round.
-- [ ] Request one round from API; show loading, retry, and unavailable states.
-- [ ] Offer 5, 10, and 25 flag presets plus custom count; cap custom requests at 50, validate against API bounds, and keep score/progress correct.
-- [ ] Port guess checking and hint sequence; accept only selected-language full names or known same-language aliases after case, diacritics, punctuation, and whitespace normalization.
-- [ ] Reset hints and answer state between flags; support keyboard submit and play again.
-- [ ] Use public flag CDN URL built from country code; show image fallback when loading fails.
-- [ ] Add Vitest unit tests for answer normalization, hint progression, and end-of-game scoring; add targeted React component tests only for behavior that pure logic tests cannot cover.
+- [x] Build start, game, and results views with React state; keep English/Portuguese copy together and persist chosen language for the round.
+- [x] Request one round from API; show loading, retry, and unavailable states.
+- [x] Offer 5, 10, and 25 flag presets plus custom count; cap custom requests at 50, validate against API bounds, and keep score/progress correct.
+- [x] Port guess checking and hint sequence; accept only selected-language full names or known same-language aliases after case, diacritics, punctuation, and whitespace normalization.
+- [x] Reset hints and answer state between flags; support keyboard submit and play again.
+- [x] Use public flag CDN URL built from country code; show image fallback when loading fails.
+- [x] Add Vitest unit tests for answer normalization, hint progression, and end-of-game scoring; add targeted React component tests only for behavior that pure logic tests cannot cover.
 
 ### 4. Page refresh
 
-- [ ] Capture old home/game states as visual baseline; use live preview for color/motif reference.
-- [ ] Refresh home screen: clearer title, language switch, round-size control, and primary start action.
-- [ ] Refresh game screen: real flag in place of collage placeholder, visible progress, clean answer field, hint steps, feedback, and next action.
-- [ ] Refresh results screen: score summary and replay action.
-- [ ] Use Tailwind for responsive phone/desktop layout, consistent color/type/spacing, focus states, labels, and readable feedback in both languages.
-- [ ] Review flag image accessibility without leaking answer before reveal; test keyboard and touch flow.
+- [x] Capture old home/game states as visual baseline; use `design/preview.html` and its screenshots for the refreshed visual direction. Baselines: `docs/visual-baseline/legacy-home.png` and `docs/visual-baseline/legacy-game.png`.
+- [x] Refresh home screen: clearer title, language switch, round-size control, and primary start action.
+- [x] Refresh game screen: real flag in place of collage placeholder, visible progress, clean answer field, hint steps, feedback, and next action.
+- [x] Refresh results screen: score summary and replay action.
+- [x] Use Tailwind for responsive phone/desktop layout, consistent color/type/spacing, focus states, labels, and readable feedback in both languages.
+- [x] Review flag image accessibility without leaking answer before reveal.
+- [ ] Complete keyboard Enter and native touch flow checks; browser automation did not activate Enter and provides no touch input.
 
 ### 5. Verify and release
 
