@@ -37,7 +37,7 @@ Existing game name: Guess Flags. User requested a small design refresh and suppl
 
 ## Evidence on Hand
 
-- Existing static app: `index.html`, `gamePage.html`, `scripts/`, `styles/`, `imagens/`.
+- Rebuilt app: `apps/web/` and `apps/api/`.
 - Live reference: https://guessflags.netlify.app/.
 - REST Countries v5 documentation: https://restcountries.com/docs/countries.
 - No account or leaderboard flow exists in current app.

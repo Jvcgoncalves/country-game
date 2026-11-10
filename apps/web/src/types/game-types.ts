@@ -101,6 +101,7 @@ export interface LanguageCopy {
   incorrect: string;
   answerIs: string;
   nextFlag: string;
+  seeResults: string;
   results: string;
   finalScore: string;
   playAgain: string;

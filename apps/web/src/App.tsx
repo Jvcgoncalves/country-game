@@ -118,6 +118,7 @@ function GameView({ model, state }: AppProps) {
   if (!question) return null;
 
   const complete = model.isCurrentQuestionComplete();
+  const isLastQuestion = state.currentIndex === state.questions.length - 1;
   const hints = [
     { label: text.capital, value: question.capital },
     { label: text.currency, value: question.currency },
@@ -224,7 +225,7 @@ function GameView({ model, state }: AppProps) {
               <>
                 <p className="answer-revealed"><strong>{text.answerIs}:</strong> {question.answer}</p>
                 <button type="button" onClick={() => model.advance()} className="primary-button next-button">
-                  {text.nextFlag}
+                  {isLastQuestion ? text.seeResults : text.nextFlag}
                 </button>
               </>
             ) : (

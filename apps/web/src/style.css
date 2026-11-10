@@ -115,7 +115,7 @@ button:disabled {
   transition: background-color 150ms ease, color 150ms ease;
 }
 
-.language-option:hover:not(:disabled) {
+.language-option:hover:not(:disabled):not(.is-selected) {
   background: #eee8f7;
 }
 

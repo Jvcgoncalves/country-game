@@ -2,19 +2,13 @@
 
 Flag guessing game. Play in English or Brazilian Portuguese, choose a round length, and use up to three hints to identify each country.
 
-The original static app remains at the repository root while its replacement is built in `apps/web` and `apps/api`.
+The rebuilt app lives in `apps/web`, with its API in `apps/api`.
 
 ## Play the existing game
 
 Live site: [guessflags.netlify.app](https://guessflags.netlify.app/)
 
 Choose a language and round size on the start page, then guess each country from its flag. Reveal hints for the capital, currency, and first three letters of the answer. Review your score at the end and play again.
-
-![Existing game start page](https://github.com/Jvcgoncalves/country-game/assets/127047416/f36450f4-6bd2-4326-ad2a-0cafa25b30ca)
-
-![Existing game round size control](https://github.com/Jvcgoncalves/country-game/assets/127047416/c9300016-e04f-431f-ad6d-062275edb232)
-
-![Existing game round](https://github.com/Jvcgoncalves/country-game/assets/127047416/36015dcf-2db7-40de-9908-39665209df31)
 
 ## Requirements
 

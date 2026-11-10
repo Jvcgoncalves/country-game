@@ -11,10 +11,6 @@ Rebuild current two-page flag game as an npm workspace monorepo. Use Vite + Reac
 - Show progress, score, results, and play again.
 - Avoid duplicate flags within one game.
 
-## Design reference
-
-Use [`design/preview.html`](design/preview.html) and its desktop/mobile screenshots as the visual source. It defines the paper/green/purple palette, Barlow Condensed and Atkinson Hyperlegible type, home flag artwork, split game layout, and mobile stacking. Keep the app as one white page surface; the colored flag artwork remains part of the home view.
-
 ## Target layout
 
 ```text
@@ -25,20 +21,20 @@ package.json           # npm workspaces and root scripts
 .env.example           # server-only config names, no real key
 ```
 
-Browser calls `/api` on Netlify. Netlify proxies those requests to Fastify on Vercel; Vite proxies `/api` to local Fastify during dev. Fastify reads `REST_COUNTRIES_API_KEY` from server env and calls `https://api.restcountries.com/countries/v5` with `Authorization: Bearer ...`. No key in `VITE_*`, web bundle, source control, response, or logs. [Vercel Fastify guide](https://vercel.com/docs/frameworks/backend/fastify) · [Netlify proxy guide](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/)
+Browser calls `/api` on Netlify. Netlify proxies those requests to Fastify on Vercel; Vite proxies `/api` to local Fastify during dev. Fastify reads `REST_COUNTRIES_API_KEY` from server env and calls the REST Countries v5 API with `Authorization: Bearer ...`. No key in `VITE_*`, web bundle, source control, response, or logs.
 
 Fastify returns game-specific rounds rather than a full country data feed. Each question carries only the fields needed for play: code, selected-language answer/aliases, capital/currency hints, and public flag URL derived from alpha-2 code. Server samples without replacement. API owns upstream v5 mapping so future upstream changes stay isolated.
 
-REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 records per page. Success payload uses `data.objects` and `data.meta`; errors use `errors`. Fetch pages until `meta.more` is false and request only needed fields. Cache with an absolute expiration no later than three days; Vercel memory alone is not durable. Flag CDN supports direct browser image requests without API key. Confirm exact translation and capital/currency shapes against live v5 data before writing mapper. [Countries API docs](https://restcountries.com/docs/countries) · [Caching and data-use terms](https://restcountries.com/legal/terms-of-service)
+REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 records per page. Success payload uses `data.objects` and `data.meta`; errors use `errors`. Fetch pages until `meta.more` is false and request only needed fields. Cache with an absolute expiration no later than three days; Vercel memory alone is not durable. Flag CDN supports direct browser image requests without API key. Confirm exact translation and capital/currency shapes against live v5 data before writing mapper.
 
 ## Tasks
 
 ### 1. Workspace setup
 
-- [x] Create npm workspaces, root `dev`, `build`, `lint`, `typecheck`, and `test` scripts; keep old app available until replacement works.
+- [x] Create npm workspaces and root `dev`, `build`, `lint`, `typecheck`, and `test` scripts.
 - [x] Scaffold `apps/web` with Vite React TypeScript; install/configure Tailwind.
 - [x] Scaffold `apps/api` with Fastify; configure dev server, production build/start, and `/api` Vite proxy.
-- [x] Add `.gitignore`, `.env.example`, and README setup instructions for server key, dev ports, builds, Netlify proxy, and Vercel deployment.
+- [x] Add `.gitignore`, `.env.example`, and README setup instructions for the server key, dev ports, builds, Netlify proxy, and Vercel deployment.
 - [x] Honor repository rules: code in English; KISS/DRY; no `any`; explicit type definitions in type-only files; no written types in files with functions or classes; utility behavior in classes with static methods instead of loose utility functions.
 
 ### 2. API and v5 migration
@@ -67,7 +63,6 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 r
 
 ### 4. Page refresh
 
-- [x] Capture old home/game states as visual baseline; use `design/preview.html` and its screenshots for the refreshed visual direction. Baselines: `docs/visual-baseline/legacy-home.png` and `docs/visual-baseline/legacy-game.png`.
 - [x] Refresh home screen: clearer title, language switch, round-size control, and primary start action.
 - [x] Refresh game screen: real flag in place of collage placeholder, visible progress, clean answer field, hint steps, feedback, and next action.
 - [x] Refresh results screen: score summary and replay action.
@@ -77,11 +72,12 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 r
 
 ### 5. Verify and release
 
+- [x] Remove the legacy static app, local reference artwork, and design previews; keep the workspace code, README, PRODUCT, and this plan.
 - [ ] Run lint, `vitest run`, TypeScript check, and production builds for both apps; run same checks in CI.
 - [ ] Manually play full rounds in English and Portuguese on phone and desktop; test bad input, missing data, failed API, hints, results, and replay.
 - [ ] Inspect built web assets and network calls: key absent; browser calls only Netlify `/api` route and public flag CDN.
 - [ ] Deploy Fastify on Vercel with server secret and Netlify proxy rule for `/api`; verify browser uses same-origin API path and health check.
-- [ ] Update README screenshots and usage docs; remove obsolete static files only after new app passes checks.
+- [ ] Update README usage and deployment details after release verification.
 
 ### 6. Tag-triggered production deploys
 
@@ -98,7 +94,7 @@ Use GitHub Actions as the release trigger. Netlify and Vercel Git integrations d
 
 ### 7. v2 release
 
-- [ ] Set root and workspace `package.json` versions to `2.0.0`; document version policy in README. Current README says `1.2.0.0`, and repository has no tags yet.
-- [ ] Add v2 release notes covering rebuilt stack, API migration, new design, and known limits.
+- [ ] Set root and workspace `package.json` versions to `2.0.0`; document version policy in README. Current package versions remain `1.2.0`; repository has no tags yet.
+- [ ] Add v2 release notes covering the rebuilt stack, API migration, refreshed design, and known limits.
 - [ ] After checks pass, create annotated Git tag `v2.0.0` on release commit; ensure tag and package versions match, then push tag to trigger the production deploy workflow above.
 - [ ] Run production smoke checks after both deploys finish; fix or roll back release if either service fails.
