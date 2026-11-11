@@ -1,2 +1,2 @@
-/api/* https://YOUR-VERCEL-API-DOMAIN.vercel.app/api/:splat 200
+/api/* https://YOUR-VERCEL-API-DOMAIN/api/:splat 200
 /* / 302

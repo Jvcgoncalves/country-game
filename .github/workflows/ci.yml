@@ -184,4 +184,4 @@ jobs:
           sed -i "s/YOUR-VERCEL-API-DOMAIN/$VERCEL_API_DOMAIN/g" _redirects
 
       - name: Deploy prebuilt web app to Netlify
-        run: npm exec --yes --package=netlify-cli@latest -- netlify deploy --dir=apps/web/dist --no-build --prod --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+        run: npm exec --yes --package=netlify-cli@latest -- netlify deploy --filter=@guess-flags/web --dir=apps/web/dist --no-build --prod --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
