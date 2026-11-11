@@ -110,18 +110,16 @@ jobs:
         run: npm ci
 
       - name: Pull Vercel production settings
-        working-directory: apps/api
         run: npm exec --yes --package=vercel@latest -- vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Build Vercel production artifact
-        working-directory: apps/api
         run: npm exec --yes --package=vercel@latest -- vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Upload Vercel production artifact
         uses: actions/upload-artifact@v7
         with:
           name: vercel-output
-          path: apps/api/.vercel/output
+          path: .vercel/output
           if-no-files-found: error
           retention-days: 1
 
@@ -147,10 +145,9 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: vercel-output
-          path: apps/api/.vercel/output
+          path: .vercel/output
 
       - name: Deploy prebuilt API to Vercel
-        working-directory: apps/api
         run: npm exec --yes --package=vercel@latest -- vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
 
   deploy-netlify:
