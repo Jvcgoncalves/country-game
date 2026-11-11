@@ -7,7 +7,7 @@ export class GameViewModel {
     screen: 'start',
     language: GameViewModel.readLanguage(),
     selectedRoundSize: 5,
-    customCount: '',
+    customCount: '5',
     questions: [],
     currentIndex: 0,
     score: 0,

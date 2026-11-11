@@ -45,6 +45,14 @@ npm run test
 
 The API build emits JavaScript to `apps/api/dist`; `npm run start --workspace=@guess-flags/api` starts that build. Vitest runs API unit tests from `apps/api/test`.
 
+## Continuous integration
+
+GitHub Actions runs lint, tests, type checks, and production builds on every push and pull request using Node.js 22. Pushing a `v*` tag also validates that its version matches the root, web, and API package versions. After validation, the workflow builds deployable artifacts and sends them to Netlify and Vercel. Netlify receives the already built `apps/web/dist`; Vercel receives its Build Output API artifact through a prebuilt deployment.
+
+Configure these GitHub repository secrets for tag releases: `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`. Before the first release tag, add the repository variable `VERCEL_API_DOMAIN` with the hostname assigned to the API project, without a scheme or path. GitHub Actions uses these values to deploy; no local provider login is needed. Keep `REST_COUNTRIES_API_KEY` and the Upstash credentials in Vercel's project settings.
+
+The web app bundles Atkinson Hyperlegible and Barlow Condensed locally. Their SIL Open Font License files are included in `apps/web/public/fonts`, so pages do not request fonts from Google at runtime.
+
 ## API and REST Countries v5
 
 The API exposes `GET /api/health` and `GET /api/round?count=5&language=en`. Round size defaults to 5 and accepts 1–50; requests above 50 are rejected. Language accepts `en` or `pt-BR`.
@@ -59,17 +67,15 @@ Production stores normalized catalog data in Upstash Redis with a hard 72-hour e
 
 ## Netlify web deployment
 
-The root `netlify.toml` builds `apps/web` and proxies browser `/api/*` requests to the Fastify deployment. After creating the Vercel API project, replace `YOUR-VERCEL-API-DOMAIN` in `netlify.toml` with its production hostname, without `https://` or a trailing slash. Netlify keeps the browser URL on the site while proxying the request.
-
-Import the repository into Netlify with the repository root as the base directory. The build command and publish directory are already in `netlify.toml`.
+The tag workflow uploads the built `apps/web/dist` directory to the existing Netlify site. Its `_redirects` file proxies `/api/*` to the hostname in the GitHub repository variable `VERCEL_API_DOMAIN` and redirects every other unknown route to `/`.
 
 ## Vercel API deployment
 
 Create a separate Vercel project for this repository and set its Root Directory to `apps/api`. Keep the npm workspace root and lockfile available to the build by enabling **Include source files outside of the Root Directory** if Vercel asks. Vercel detects the Fastify entry at `src/server.ts`; leave its framework build settings at their defaults.
 
-Add `REST_COUNTRIES_API_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN` as Vercel server environment variables for the environments where the API runs. Never add these secrets to Netlify or a `VITE_*` variable. After the first deployment, copy the Vercel production hostname into the Netlify proxy rule above.
+Add `REST_COUNTRIES_API_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN` as Vercel server environment variables for the environments where the API runs. Never add these secrets to Netlify or a `VITE_*` variable. Set the API project's assigned production hostname as the `VERCEL_API_DOMAIN` GitHub repository variable before the first release tag.
 
-For local Vercel project setup, run `vercel link --repo` from the repository root and select the API project. Vercel's own deployment instructions: [Fastify](https://vercel.com/kb/guide/ship-a-fastify-app-on-vercel) and [monorepos](https://vercel.com/docs/monorepos).
+After validation, GitHub Actions runs `vercel build --prod`, uploads the generated `.vercel/output` artifact, then deploys that artifact with `vercel deploy --prebuilt --prod`. Vercel's deployment instructions: [Fastify](https://vercel.com/kb/guide/ship-a-fastify-app-on-vercel) and [monorepos](https://vercel.com/docs/monorepos).
 
 ## Project
 

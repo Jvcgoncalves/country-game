@@ -73,19 +73,15 @@ export class CountryCatalogService {
       throw new Error('Country data temporarily unavailable.');
     }
 
-    let refreshSucceeded = false;
     try {
       const currentSnapshot = await this.readFreshSnapshot();
       if (currentSnapshot && this.now() - currentSnapshot.fetchedAt < CountryCatalogService.REFRESH_AFTER_MS) {
-        refreshSucceeded = true;
         return currentSnapshot.countries;
       }
 
-      const result = await this.fetchAndCache(previousSnapshot);
-      refreshSucceeded = result.refreshed;
-      return result.countries;
+      return this.fetchAndCache(previousSnapshot);
     } finally {
-      if (lockAcquired && refreshSucceeded) {
+      if (lockAcquired) {
         try {
           await this.cache.releaseRefreshLock(lockToken);
         } catch {
@@ -103,9 +99,9 @@ export class CountryCatalogService {
     } catch {
       this.retryAfter = this.now() + CountryCatalogService.FAILED_REFRESH_COOLDOWN_MS;
       const latestSnapshot = await this.readFreshSnapshot();
-      if (latestSnapshot) return { countries: latestSnapshot.countries, refreshed: false };
+      if (latestSnapshot) return latestSnapshot.countries;
       if (previousSnapshot && previousSnapshot.expiresAt > this.now()) {
-        return { countries: previousSnapshot.countries, refreshed: false };
+        return previousSnapshot.countries;
       }
       throw new Error('Country data temporarily unavailable.');
     }
@@ -114,16 +110,14 @@ export class CountryCatalogService {
     const expiresAt = fetchedAt + CountryCatalogService.MAX_CACHE_AGE_MS;
     const snapshot = { fetchedAt, expiresAt, countries } satisfies CountryCatalogSnapshot;
     const ttlSeconds = Math.floor((expiresAt - this.now()) / 1000);
-    let cached = false;
     if (ttlSeconds > 0) {
       try {
         await this.cache.write(snapshot, ttlSeconds);
-        cached = true;
       } catch {
         // Serve current upstream data; cache outage must not expose its details.
       }
     }
-    return { countries, refreshed: cached };
+    return countries;
   }
 
   private async waitForOtherRefresh() {

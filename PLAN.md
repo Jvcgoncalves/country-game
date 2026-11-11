@@ -73,23 +73,27 @@ REST Countries v5 list is paginated (`limit` max 100 on free plan); request 50 r
 ### 5. Verify and release
 
 - [x] Remove the legacy static app, local reference artwork, and design previews; keep the workspace code, README, PRODUCT, and this plan.
-- [ ] Run lint, `vitest run`, TypeScript check, and production builds for both apps; run same checks in CI.
-- [ ] Manually play full rounds in English and Portuguese on phone and desktop; test bad input, missing data, failed API, hints, results, and replay.
-- [ ] Inspect built web assets and network calls: key absent; browser calls only Netlify `/api` route and public flag CDN.
-- [ ] Deploy Fastify on Vercel with server secret and Netlify proxy rule for `/api`; verify browser uses same-origin API path and health check.
-- [ ] Update README usage and deployment details after release verification.
+- [x] Run lint, `vitest run`, TypeScript check, and production builds for both apps locally.
+- [x] Add GitHub Actions CI for the same checks on pushes and pull requests.
+- [ ] Run CI in GitHub after workflow changes are pushed.
+- [x] Play full rounds in English and Portuguese on desktop; cover invalid round size, wrong and correct guesses, missing hints, simulated API failure, hints, results, replay, and give up.
+- [ ] Repeat full flows at phone width and with native touch; current browser automation has no viewport or touch controls.
+- [x] Inspect production web build and browser requests: no server credentials or REST Countries host in web assets; API fetch uses same-origin `/api`, flag images use public CDN, and fonts are local.
+- [ ] Deploy Fastify on Vercel with server secrets and Netlify `/api` proxy; verify deployed health and same-origin requests. GitHub Actions deploy workflow is ready; provider credentials and production API hostname must be configured in GitHub before the first tag deploy.
+- [x] Document local setup, check commands, CI workflow, deployment setup, and bundled font licenses in README.
+- [ ] Add deployed hostnames and production smoke results to README after deployment.
 
 ### 6. Tag-triggered production deploys
 
-Use GitHub Actions as the release trigger. Netlify and Vercel Git integrations deploy from branches; the workflow should deploy both projects explicitly when a version tag is pushed.
+Use GitHub Actions as the release trigger. The workflow deploys both projects explicitly when a version tag is pushed, after validation succeeds.
 
-- [ ] Keep one GitHub repository and two deploy targets: existing Netlify site builds `apps/web` from repository root; Vercel project deploys `apps/api` with workspace files available.
-- [ ] Replace `YOUR-VERCEL-API-DOMAIN` in `netlify.toml` with the production API hostname before deploying the new web app.
-- [ ] Add a GitHub Actions release workflow triggered only by pushed `v*` tags. Check out the tagged commit, set up Node 22, run `npm ci`, then run lint, tests, type checks, and both production builds before deploying.
-- [ ] Validate tag version matches root, web, and API `package.json` versions so a tag always identifies the exact app version being released.
-- [ ] Deploy API first with Vercel CLI from `apps/api` using GitHub secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`; then deploy `apps/web/dist` to the existing Netlify production site using Netlify CLI and `NETLIFY_AUTH_TOKEN` / `NETLIFY_SITE_ID`.
-- [ ] Keep runtime secrets (`REST_COUNTRIES_API_KEY`, Upstash credentials) in Vercel project settings. GitHub Actions needs deploy credentials and project IDs only.
-- [ ] Prevent branch pushes from publishing production on either provider; retain preview deploys only if useful. Tag workflow owns production deploys.
+- [x] Keep one GitHub repository and two deploy targets: existing Netlify site receives the built `apps/web/dist`; Vercel project deploys `apps/api` with workspace files available.
+- [x] Replace `YOUR-VERCEL-API-DOMAIN` in the downloaded web artifact with the `VERCEL_API_DOMAIN` GitHub repository variable before deploying the web app.
+- [x] Add GitHub Actions production deploy jobs for pushed `v*` tags, after lint, tests, type checks, and production builds pass. Transfer the web output and Vercel Build Output API directory as workflow artifacts.
+- [x] Validate tag version matches root, web, and API `package.json` versions so a tag identifies the exact app version being released.
+- [x] Deploy the prebuilt API artifact to Vercel using `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`; then deploy the prebuilt web artifact to the existing Netlify production site using `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`.
+- [x] Keep runtime secrets (`REST_COUNTRIES_API_KEY`, Upstash credentials) in Vercel project settings. GitHub Actions uses deploy credentials, project IDs, and the non-secret API hostname variable.
+- [x] Branch pushes and pull requests run validation only; pushed version tags own production deploys.
 - [ ] After each tag deploy, verify the Vercel API health endpoint, Netlify site's `/api/health` proxy, and the deployed tag/commit in both provider dashboards.
 
 ### 7. v2 release
